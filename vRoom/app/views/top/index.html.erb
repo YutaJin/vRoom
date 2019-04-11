@@ -1,0 +1,36 @@
+<% unless current_user.full_profile? %>
+<div class="content">
+  <header>
+    <div class='a_content'>
+    <h2>まずはプロフィールを登録しましょう！</h2>
+    <%= link_to "プロフィールを登録する", edit_user_path(current_user), { class: "btn btn-lg btn-primary withripple" } %>
+  </div>
+  </header>
+</div>
+<% else %>
+　
+
+      　<% if @timeline.map(&:user_id).include?(current_user.all_following.map(&:id)) %>
+         <div class='col-lg-12'>
+         <div class='main-contents'>
+         <div class='group-post'>
+           <%= render @timeline_resource %>
+         </div>
+         </div>
+         </div>
+        <% else %>
+
+
+
+
+            <%= render partial: "search" %>
+          </div>
+        </div>
+
+        <% end %>
+
+
+<% end %>
+
+
+

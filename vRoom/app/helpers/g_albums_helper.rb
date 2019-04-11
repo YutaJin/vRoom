@@ -1,0 +1,2 @@
+module GAlbumsHelper
+end

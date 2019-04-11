@@ -1,0 +1,41 @@
+
+        <div class='post'>
+
+
+          <div class='user-info'>
+
+             <div class="image"  style="background-image: url(<%= rails_blob_path(upost.user.image) %>) "></div>
+            <p><%= upost.user.nickname %></p>
+          </div>
+
+
+          <div class='more-content'>
+          <div class="post-image" style="background-image: url(<%= rails_blob_path(upost.image) %>)">
+            <div class='post-sentence'>
+              <%= upost.text %>
+          </div>
+
+          <% if upost.user_id == current_user.id %>
+           <div class='post-menu'>
+             <div class="dropdown">
+              <li class='dropdown'>
+                <a href='#' class='dropdown-toggle' data-toggle='dropdown' role='button' aria-expanded='false'><span class='caret'></span></a>
+                 <ul class='dropdown-menu' role='menu'>
+                    <li class='presentation'>
+                     <%= link_to '編集', edit_user_u_album_upost_path(upost.user_id, upost.u_album_id, upost.id) %>
+                  </li>
+                  <li class='presentation'>
+                    <%= link_to '削除', "/users/#{upost.user_id}/u_album/#{upost.u_album_id}/uposts/#{upost.id}", method: :delete %>
+                  </li>
+                   <li class='presentation'>
+
+                  </li>
+                </ul>
+              </li>
+            </div>
+          </div>
+          <% end %>
+        </div>
+     </div>
+    </div>
+

@@ -1,0 +1,88 @@
+<div class='main-contents profile'>
+  <div class="col-lg-12">
+
+
+<div class="image"  style="background-image: url(<%= rails_blob_path(@user.image) %>) "></div>
+    <div class='info'>
+      <div class='col-lg-12'>
+<div class='name'>
+  <h2><%= @user.nickname %></h2>
+  <div class='text'>
+  <h3><%= @user.text %></h3>
+</div>
+</div>
+
+</div>
+</div>
+
+
+
+  <ul class='ffer'>
+<div class="hidden_box_f1">
+    <label for="label1"><li>フォロー<%= @user.follow_count %></li></label>
+    <input type="checkbox" id="label1"/>
+    <div class="hidden_show1">
+      <!--非表示ここから-->
+      <div class='follow-show'>
+      <% @user.all_following.each do |follow| %>
+
+
+        <li><%= link_to "#{follow.nickname}", user_path(follow) %></li>
+      <% end %>
+
+    </div>
+
+      <!--ここまで-->
+    </div>
+</div>
+
+
+<div class="hidden_box_f2">
+ <li><label for="label2">フォロワー<%= @user.followers_count %></label></li>
+  <input type="checkbox" id="label2"/>
+  <div class="hidden_show2">
+   <div class='follower-show'>
+      <% @user.followers.each do |follower| %>
+       <%= link_to "#{follower.nickname}", user_path(follower) %>
+      <% end %>
+
+    </div>
+  </div>
+</div>
+
+</ul>
+<ul class='user_menu'>
+<li id="user-<%= @user.id %>" class="collection-item">
+    <%= render 'users/follow', user: @user %>
+</li>
+ <% if @user.id == current_user.id %>
+        <li><%= link_to 'アルバムを作成', new_user_u_album_path(current_user), {:class => 'btn btn-primary withripple' } %></li>
+       <li> <%= link_to 'プロフィール編集', edit_user_path(current_user), {:class => 'btn btn-primary withripple' }%></li>
+
+  <% end %>
+
+
+</ul>
+
+
+</div>
+</div>
+<div class='group-post'>
+  <h1>albums</h1>
+<div class='album-index'>
+  <% @u_album.each do |album| %>
+  <div class='album'>
+  <a href="/users/<%= album.user_id %>/u_albums/<%= album.id %>">
+
+  <div class="image"  style="background-image: url(<%= rails_blob_path(album.image) %>) ">
+    <%=  album.name %>
+     </div>
+
+
+
+  </a>
+</div>
+ <% end %>
+</div>
+</div>
+

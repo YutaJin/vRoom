@@ -1,0 +1,41 @@
+
+        <div class='post'>
+          <div class='user-info'>
+
+             <div class="image"  style="background-image: url(<%= rails_blob_path(gpost.user.image) %>) "></div>
+            <p><%= gpost.user.nickname %></p>
+            <div class='post-info' style='margin-bottom: 0;'>
+            <p>グループ</p>
+            <h4><%= link_to "#{gpost.group.key}", group_path(gpost.group) %></h4></br>
+            <p>アルバム</p>
+            <h4><%= link_to "#{gpost.g_album.name}", group_g_album_path(gpost.group, gpost.g_album) %></h4></br>
+            </div>
+          </div>
+          <div class='more-content'>
+          <div class="post-image" style="background-image: url(<%= rails_blob_path(gpost.image) %>)">
+            <div class='post-sentence'>
+            <%= gpost.text %>
+          </div>
+           <% if gpost.user_id == current_user.id %>
+           <div class='post-menu'>
+             <div class="dropdown">
+              <li class='dropdown'>
+                <a href='#' class='dropdown-toggle' data-toggle='dropdown' role='button' aria-expanded='false'><span class='caret'></span></a>
+                 <ul class='dropdown-menu' role='menu'>
+                    <li class='presentation'>
+                      <%= link_to '編集', edit_group_g_album_gpost_path(gpost.group_id, gpost.g_album_id, gpost) %>
+                  </li>
+                  <li class='presentation'>
+                   <%= link_to '削除', "/groups/#{gpost.group_id}/g_albums/#{gpost.g_album_id}/gposts/#{gpost.id}", method: :delete  %>
+                  </li>
+                   <li class='presentation'>
+
+                  </li>
+                </ul>
+              </li>
+            </div>
+          </div>
+          <% end %>
+          </div>
+        </div>
+    </div>

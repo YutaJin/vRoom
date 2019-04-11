@@ -1,0 +1,17 @@
+<div class='col-log-12'>
+  <p>メンバー</p>
+  <% @group.users.each do |member| %>
+   <li class='ff'>
+    <a href="/users/<%= member.id %>" >
+    <div class='nickname'>
+
+    <%= member.nickname%>
+
+  </div>
+    <div class="image"  style="background-image: url(<%= rails_blob_path(member.image) %>) "></div>
+  </a>
+
+  </li>
+  <% end %>
+  <%= link_to 'Group page', group_path(@group), class: 'btn btn-default' %>
+</div>

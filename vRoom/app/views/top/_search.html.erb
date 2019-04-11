@@ -1,0 +1,36 @@
+<div class='search'>
+  <div class='col-lg-12'>
+<p>検索</p>
+<%= form_tag(search_path,:method => 'get') do %>
+  <%= text_field_tag :search %>
+  <%= submit_tag 'Search', :name => nil %>
+<% end %>
+
+
+
+<ul><% @user.each do |user| %>
+
+  <li class='ff'>
+    <a href="/users/<%= user.id %>" >
+    <div class='nickname' >
+
+    <%= user.nickname%>
+  </div>
+  <% unless user.image == nil %>
+    <div class="image"  style="background-image: url(<%= rails_blob_path(user.image) %>) "></div>
+ <% else %>
+   ああ
+  <% end %>
+  </a>
+  </li>
+  <% end %>
+</ul>
+
+</div>
+</div>
+
+
+
+
+
+

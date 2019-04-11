@@ -1,0 +1,23 @@
+<div class='row form'>
+
+<div class='col-lg-12'>
+  <div class='content'>
+  <%= form_for [@group, @g_album, @gpost] do |f| %>
+  <h2>投稿する</h2>
+  <div class="form-group file">
+        <%=  f.label :image, :Image%>
+        <%= f.file_field :image, class: "form-control floating-label", placeholder: "画像アップロード" %>
+      </div>
+   <div class='form-group'>
+    <div class='col-lg-12'>
+       <%= f.label :text, :text %>
+       <%= f.text_area :text, placeholder: 'text', class: 'form-control' %>
+     </div>
+   </div>
+   <div class="form-group">
+        <%= f.submit "送信", class: "btn btn-primary withripple" %>
+      </div>
+  <% end %>
+</div>
+</div>
+</div>

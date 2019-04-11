@@ -1,0 +1,39 @@
+<div class='col-log-12'>
+<% if @user.all_following.blank?  %>
+<div class='search'>
+  <div class='col-lg-12'>
+<h3>ユーザー検索</h3>
+<h5>フォローしているユーザーがいません。まず、友達をフォローしよう！！</h5>
+<%= form_tag(search_path,:method => 'get') do %>
+  <%= text_field_tag :search %>
+  <%= submit_tag 'Search', :name => nil %>
+<% end %>
+
+
+
+</div>
+</div>
+<% else %>
+<ul><% @user.followers.each do |user| %>
+
+  <li class='ff' style='display: inline-block;'>
+    <a href="/users/<%= user.id %>" >
+    <div class='nickname'>
+
+    <%= user.nickname%>
+
+
+  </div>
+    <div class="image"  style="background-image: url(<%= rails_blob_path(user.image) %>) "></div>
+  </a>
+  <div class='invite' style='float: right;'>
+    <% unless user.groups.exists?(id: @group.id) %>
+    <%= link_to 'グループに追加', group_users_path(group_id: @group.id, user_id: user.id), method: 'POST' %></div>
+    <% else %>
+    <p>メンバーに追加済</p>
+    <% end %>
+  </li>
+  <% end %>
+</ul>
+<% end %>
+</div>

@@ -1,0 +1,30 @@
+<div class="hidden_box">
+    <div class='group-menu'>
+    <label for="label1">menu</label>
+    <input type="checkbox" id="label1"/>
+    <div class="hidden_show">
+      <!--非表示ここから-->
+
+      <div class="cp_menu">
+          <label for="cp_menu_bar1">
+            <div class="image"  style="background-image: url(<%= rails_blob_path(@g_album.image) %>) "></div>
+            <h3><%= @g_album.group.key %></h3>
+            <h5><%= @g_album.name %></h5>
+
+          </label>
+          <input type="radio" name="radio" id="cp_menu_bar1" class="accordion" />
+          <ul id="link1">
+            <li><%= link_to 'アルバムを編集', edit_group_g_album_path(@group, @g_album) %></li>
+             <li><%= link_to 'アルバムに投稿',   new_group_g_album_gpost_path(@group, @g_album) %></li>
+          </ul>
+
+</div>
+
+
+
+
+
+     </div>
+      <!--ここまで-->
+    </div>
+</div>

@@ -1,0 +1,37 @@
+<div class="hidden_box">
+    <div class='group-menu'>
+    <label for="label1">group menu</label>
+    <input type="checkbox" id="label1"/>
+    <div class="hidden_show">
+      <!--非表示ここから-->
+
+      <div class="cp_menu">
+          <label for="cp_menu_bar1">
+            <div class="image"  style="background-image: url(<%= rails_blob_path(@group.image) %>) "></div>
+            <h3><%= @group.key %></h3>
+            <h5><%= @group.detail %></h5>
+          </label>
+          <input type="radio" name="radio" id="cp_menu_bar1" class="accordion" />
+          <ul id="link1">
+            <li><%= link_to '編集', edit_group_path(@group) %></li>
+             <li><%= link_to 'アルバム作成',   new_group_g_album_path(@group) %></li>
+          </ul>
+          <label for="cp_menu_bar2">member</label>
+          <input type="radio" name="radio" id="cp_menu_bar2" class="accordion" />
+          <ul id="link2">
+            <% @group.group_users.each do |group_user| %>
+                     <li><%= link_to group_user.user.nickname, user_path(group_user.user) %></li>
+                    <% end %>
+            <li><%= link_to 'メンバーを追加', new_group_user_path(group_id: @group.id) %></li>
+          </ul>
+
+</div>
+
+
+
+
+
+     </div>
+      <!--ここまで-->
+    </div>
+</div>
